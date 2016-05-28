@@ -29,6 +29,8 @@ namespace AudioVisualization.ViewModels
             var result = new List<INavigationBarMenuItem>();
 
             // Add navigation items here.
+            result.Add(new NavigationBarMenuItem(typeof(NowPlayingPage), null, NavigationBarItemPosition.Top, "Now Playing", null, (char)Symbol.Play));
+            result.Add(new NavigationBarMenuItem(typeof(LibraryPage), null, NavigationBarItemPosition.Top, "Library", null, (char)Symbol.MusicInfo));
 
             return result;
         }
