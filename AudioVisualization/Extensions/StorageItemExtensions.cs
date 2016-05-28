@@ -24,6 +24,7 @@ namespace AudioVisualization.Extensions
             var mediaItem = new MediaPlaybackItem(source);
 
             var displayProperties = mediaItem.GetDisplayProperties();
+            displayProperties.Type = Windows.Media.MediaPlaybackType.Music;
             displayProperties.Thumbnail = RandomAccessStreamReference.CreateFromStream(thumbnail);
             displayProperties.MusicProperties.AlbumArtist = musicProperties.AlbumArtist;
             displayProperties.MusicProperties.AlbumTitle = musicProperties.Album;
