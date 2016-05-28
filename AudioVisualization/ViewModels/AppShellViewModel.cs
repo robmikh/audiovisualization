@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AudioVisualization.Views;
+using Windows.UI.Xaml.Controls;
 
 namespace AudioVisualization.ViewModels
 {
@@ -36,6 +38,9 @@ namespace AudioVisualization.ViewModels
             var result = new List<INavigationBarMenuItem>();
 
             // Add navigation items here.
+#if DEBUG
+            result.Add(new NavigationBarMenuItem(typeof(DebugPage), null, NavigationBarItemPosition.Bottom, "Debug", null, (char)Symbol.Admin));
+#endif
 
             return result;
         }

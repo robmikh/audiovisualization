@@ -41,6 +41,14 @@ namespace AudioVisualization
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            CreateRootFrame(e.PreviousExecutionState, e.Arguments);
+
+            // Ensure the current window is active
+            Window.Current.Activate();
+        }
+
+        void CreateRootFrame(ApplicationExecutionState previousExecutionState, string arguments)
+        {
             var shell = Window.Current.Content as AppShell;
 
             // Do not repeat app initialization when the Window already has content,
@@ -63,11 +71,8 @@ namespace AudioVisualization
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                shell.AppFrame.Navigate(typeof(MainPage), e.Arguments);
+                shell.AppFrame.Navigate(typeof(MainPage), arguments);
             }
-
-            // Ensure the current window is active
-            Window.Current.Activate();
         }
 
         /// <summary>
@@ -93,5 +98,7 @@ namespace AudioVisualization
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+        partial void Construct();
     }
 }
