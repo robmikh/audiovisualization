@@ -1,0 +1,24 @@
+﻿<Application
+    x:Class="AudioVisualization.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AudioVisualization"
+    xmlns:converters="using:AudioVisualization.Converters"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <converters:UriToBitmapImageConverter x:Key="UriToBitmapImageConverter" />
+            <converters:AllCapsConverter x:Key="AllCapsConverter" />
+            <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>
