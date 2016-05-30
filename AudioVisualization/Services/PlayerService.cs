@@ -82,7 +82,9 @@ namespace AudioVisualization.Services
             {
                 _sampleGrabberProperties = new PropertySet();
 
-                player.AddAudioEffect(typeof(VolumeDetectionEffect).FullName, true, _sampleGrabberProperties);
+                player.AddAudioEffect("SG.SampleGrabberTransform", false, null);
+
+                //player.AddAudioEffect(typeof(VolumeDetectionEffect).FullName, true, _sampleGrabberProperties);
             }
         }
     }

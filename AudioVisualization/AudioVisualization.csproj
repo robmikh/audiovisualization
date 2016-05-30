@@ -231,6 +231,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SampleGrabber\SampleGrabber.vcxproj">
+      <Project>{1249b84b-73cf-49dd-a281-29fb23c1d1cf}</Project>
+      <Name>SampleGrabber</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

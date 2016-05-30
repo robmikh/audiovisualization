@@ -1,0 +1,12 @@
+import "Windows.Media.idl";
+
+#include <sdkddkver.h>
+
+namespace SG
+{
+	[version(NTDDI_WIN8)]
+	runtimeclass SampleGrabberTransform
+	{
+		interface Windows.Media.IMediaExtension;
+}
+}

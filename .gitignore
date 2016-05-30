@@ -234,3 +234,6 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+/SampleGrabber/SampleGrabberMFT.h
+/SampleGrabber/SampleGrabberMFT_h.h
+/AudioVisualization.VC.db
