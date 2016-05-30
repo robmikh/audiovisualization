@@ -222,7 +222,9 @@
     <ClCompile Include="SampleGrabber.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="SampleGrabberMFT.idl" />
+    <Midl Include="SampleGrabberMFT.idl">
+      <HeaderFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).h</HeaderFileName>
+    </Midl>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
