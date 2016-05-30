@@ -14,7 +14,6 @@
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="SampleGrabber.h" />
-    <ClInclude Include="SampleGrabberMFT.h" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="SampleGrabberMFT.idl" />
