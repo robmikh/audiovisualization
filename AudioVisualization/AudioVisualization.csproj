@@ -101,9 +101,13 @@
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AutoProcessing\EchoEffect.cs" />
+    <Compile Include="AutoProcessing\IMemoryBufferByteAccess.cs" />
+    <Compile Include="AutoProcessing\VoumeDetectionEffect.cs" />
     <Compile Include="BackgroundApp.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Controls\Visualizers\BaseVisualizer.cs" />
+    <Compile Include="Controls\Visualizers\CompositionVisualizer.cs" />
+    <Compile Include="Controls\Visualizers\Win2DVisualizer.cs" />
     <Compile Include="Controls\NavMenuList.cs" />
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>

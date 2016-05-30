@@ -8,12 +8,17 @@ using Windows.Media.Playback;
 using Windows.Foundation.Collections;
 using AudioVisualization.AutoProcessing;
 using System.Diagnostics;
+using Windows.Media;
+using AudioVisualization.Controls.Visualizers;
 
 namespace AudioVisualization.Services
 {
     class PlayerService
     {
         private static PlayerService _current;
+
+        private PropertySet _sampleGrabberProperties;
+
         public static PlayerService Current { get { if (_current == null) { _current = new PlayerService(); } return _current; } }
 
         private MediaPlayer _mediaPlayer;
@@ -38,9 +43,6 @@ namespace AudioVisualization.Services
             _mediaPlayer.CurrentStateChanged += _mediaPlayer_CurrentStateChanged;
 
             _mediaPlayer.Source = Playlist.PlaybackList;
-
-            //Not working
-            //AddEchoEffect(_mediaPlayer);
         }
 
         private void _mediaPlayer_CurrentStateChanged(MediaPlayer sender, object args)
@@ -68,15 +70,20 @@ namespace AudioVisualization.Services
             _mediaPlayer.Pause();
         }
 
-        private void AddEchoEffect(MediaPlayer player)
+        public void StartVisualization(BaseVisualizer visualizer)
         {
-            // Create a property set and add a property/value pair 
-            PropertySet echoProperties = new PropertySet();
-            echoProperties.Add("Mix", 0.5f);
+            EnsureSampleGrabber(_mediaPlayer);
 
-            // Instantiate the custom effect defined in the 'CustomEffect' project 
-            player.AddAudioEffect(typeof(AudioEchoEffect).FullName, true, echoProperties);
+            visualizer.SetAudioDataSource(_sampleGrabberProperties);
         }
+        private void EnsureSampleGrabber(MediaPlayer player)
+        {
+            if (_sampleGrabberProperties == null)
+            {
+                _sampleGrabberProperties = new PropertySet();
 
+                player.AddAudioEffect(typeof(VolumeDetectionEffect).FullName, true, _sampleGrabberProperties);
+            }
+        }
     }
 }

@@ -6,11 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:AudioVisualization.Controls"
+    xmlns:visualizers="using:AudioVisualization.Controls.Visualizers"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -21,7 +23,16 @@
         </controls:PageHeader>
 
         <Grid Grid.Row="1">
+            <TextBlock>Composition Visualizer:</TextBlock>
+            <visualizers:CompositionVisualizer x:Name="compositionVisualizer" Margin="0,25,0,0"></visualizers:CompositionVisualizer>
+            <CheckBox VerticalAlignment="Bottom" >Enable Composition Visualizer</CheckBox>
+        </Grid>
 
+        <Grid Grid.Row="2">
+            <TextBlock>Win2D Visualizer:</TextBlock>
+            <visualizers:Win2DVisualizer x:Name="win2dVisualizer"></visualizers:Win2DVisualizer>
+            <!-- resource is declared imperatively-->
+            <CheckBox VerticalAlignment="Bottom" Command="{StaticResource StartWin2d}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}">Enable Win2D Visualizer</CheckBox>
         </Grid>
     </Grid>
 </local:BasePage>
