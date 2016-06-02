@@ -416,7 +416,8 @@ HRESULT CSampleGrabber::SetInputType(
 	// The type is OK. Set the type, unless the caller was just testing.
 	if (bReallySet)
 	{
-		m_pInputType.Attach(pType);		
+		//m_pInputType.Attach(pType);		
+		m_pInputType = pType;		
 
 		// When the type changes, end streaming.
 		return EndStreaming();
