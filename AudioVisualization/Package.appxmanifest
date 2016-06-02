@@ -28,6 +28,15 @@
       </uap:VisualElements>
     </Application>
   </Applications>
+  <Extensions>
+    <Extension Category="windows.activatableClass.inProcessServer">
+      <InProcessServer>
+        <Path>SampleGrabber.dll</Path>
+        <ActivatableClass ActivatableClassId="SG.SampleGrabberTransform" ThreadingModel="both" />
+      </InProcessServer>
+    </Extension>
+  </Extensions>
+
   <Capabilities>
     <Capability Name="internetClient" />
     <uap:Capability Name="musicLibrary" />
