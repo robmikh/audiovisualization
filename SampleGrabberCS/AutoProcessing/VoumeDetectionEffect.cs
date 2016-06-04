@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AudioVisualization.AutoProcessing;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Windows.Foundation;
@@ -7,7 +8,7 @@ using Windows.Media;
 using Windows.Media.Effects;
 using Windows.Media.MediaProperties;
 
-namespace AudioVisualization.AutoProcessing
+namespace SampleGrabberCS
 {
     static class VolumeDetectionPropertyNames
     {

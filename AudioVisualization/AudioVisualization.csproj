@@ -101,8 +101,6 @@
     <Compile Include="AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AutoProcessing\IMemoryBufferByteAccess.cs" />
-    <Compile Include="AutoProcessing\VoumeDetectionEffect.cs" />
     <Compile Include="BackgroundApp.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Controls\Visualizers\BaseVisualizer.cs" />
@@ -232,6 +230,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SampleGrabberCS\SampleGrabberCS.csproj">
+      <Project>{b652657b-6911-4ed5-a93d-448d78b9ff68}</Project>
+      <Name>SampleGrabberCS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SampleGrabber\SampleGrabber.vcxproj">
       <Project>{1249b84b-73cf-49dd-a281-29fb23c1d1cf}</Project>
       <Name>SampleGrabber</Name>

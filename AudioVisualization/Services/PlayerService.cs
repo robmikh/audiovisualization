@@ -10,6 +10,7 @@ using AudioVisualization.AutoProcessing;
 using System.Diagnostics;
 using Windows.Media;
 using AudioVisualization.Controls.Visualizers;
+using SampleGrabberCS;
 
 namespace AudioVisualization.Services
 {
@@ -82,9 +83,9 @@ namespace AudioVisualization.Services
             {
                 _sampleGrabberProperties = new PropertySet();
 
-                player.AddAudioEffect("SG.SampleGrabberTransform", false, null);
+                //player.AddAudioEffect("SG.SampleGrabberTransform", false, null);
 
-                //player.AddAudioEffect(typeof(VolumeDetectionEffect).FullName, true, _sampleGrabberProperties);
+                player.AddAudioEffect(typeof(VolumeDetectionEffect).FullName, true, _sampleGrabberProperties);
             }
         }
     }
