@@ -134,7 +134,7 @@ HRESULT CreateFloat32AudioType(
 		goto done;
 	}
 
-	ppType = pType.GetAddressOf();
+	pType.CopyTo(ppType);
 
 done:
 	return hr;

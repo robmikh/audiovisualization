@@ -286,7 +286,8 @@ HRESULT CSampleGrabber::GetInputAvailableType(
 				return hr;
 			}
 
-			hr = pmt->SetGUID(MF_MT_SUBTYPE, MFAudioFormat_PCM);
+			//hr = pmt->SetGUID(MF_MT_SUBTYPE, MFAudioFormat_PCM);
+			hr = pmt->SetGUID(MF_MT_SUBTYPE, MFAudioFormat_Float);
 			if (FAILED(hr))
 			{
 				return hr;
@@ -359,9 +360,9 @@ HRESULT CSampleGrabber::GetOutputAvailableType(
 	else
 	{
 		ASSERT(m_pInputType);
-		//hr = ConvertAudioTypeToFloat32(m_pInputType.Get(), wav.GetAddressOf());
-		//m_pInputType.CopyTo(wav.GetAddressOf());
-		m_pInputType.CopyTo(ppType);
+		hr = ConvertAudioTypeToFloat32(m_pInputType.Get(), wav.GetAddressOf());
+		wav.CopyTo(ppType);
+		//m_pInputType.CopyTo(ppType);
 	}
 
 	return hr;
