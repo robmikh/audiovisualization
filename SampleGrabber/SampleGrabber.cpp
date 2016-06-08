@@ -340,6 +340,12 @@ HRESULT CSampleGrabber::GetOutputAvailableType(
 
 	HRESULT hr = S_OK;
 
+	// MFMediaType_Audio
+	// MFAudioFormat_PCM
+	Microsoft::WRL::ComPtr<IMFMediaType> wav;
+	//hr = MFCreateMediaType(&wav);
+
+
 	if (m_pInputType == NULL)
 	{
 		// The input type is not set. Create a partial media type.
@@ -352,12 +358,17 @@ HRESULT CSampleGrabber::GetOutputAvailableType(
 	}
 	else
 	{
-		ASSERT(m_pInputType);
+		//hr = ConvertAudioTypeToPCM(&m_pInputType, wav.Get());
+		//ASSERT(m_pInputType);
+
 		m_pInputType.CopyTo(ppType);
 	}
 
 	return hr;
 }
+
+
+
 
 //-------------------------------------------------------------------
 // SetInputType
@@ -801,8 +812,6 @@ HRESULT CSampleGrabber::ProcessOutput(
 
 	HRESULT hr = S_OK;
 
-	/*Microsoft::WRL::ComPtr<IMFMediaBuffer> pInput;
-	Microsoft::WRL::ComPtr<IMFMediaBuffer> pOutput;*/
 
 	auto lock = m_cs.Lock();
 
@@ -820,28 +829,37 @@ HRESULT CSampleGrabber::ProcessOutput(
 	}
 
 #pragma region MyRegion
-	// Get the input buffer.
-	//hr = m_pSample->ConvertToContiguousBuffer(&pInput);
-	//if (FAILED(hr))
-	//{
-	//	return hr;
-	//}  
-#pragma endregion
+	 //Get the input buffer.
+	Microsoft::WRL::ComPtr<IMFMediaBuffer> pInput;
 
-#pragma region MyRegion
-	//DWORD currentLengthIn(0);
-	//DWORD maxLengthIn(0);
-	//DWORD currentLengthOut(0);
-	//DWORD maxLengthOut(0);
+	hr = m_pSample->ConvertToContiguousBuffer(&pInput);
+	if (FAILED(hr))
+	{
+		return hr;
+	}  
 
-	//BYTE* pInputBytes = nullptr;
-	//BYTE* pOutputBytes = nullptr;
+	DWORD currentLengthIn(0);
+	DWORD maxLengthIn(0);
+	DWORD currentLengthOut(0);
+	DWORD maxLengthOut(0);
 
-	/*hr = pInput->Lock(&pInputBytes, &maxLengthIn, &currentLengthIn);
+	BYTE* pInputBytes = nullptr;
+	BYTE* pOutputBytes = nullptr;
+
+	hr = pInput->Lock(&pInputBytes, &maxLengthIn, &currentLengthIn);
 	if (FAILED(hr))
 	{
 	return hr;
-	}*/
+	}
+
+	DirectX::XMVECTOR* vectorInputBuffer = (DirectX::XMVECTOR*)_aligned_malloc(currentLengthIn/4 * sizeof(DirectX::XMVECTOR), 16);
+
+	for (int i = 0; i < currentLengthIn/4; i++) {
+		vectorInputBuffer[i] = DirectX::XMLoadFloat((float*)(pInputBytes + (i*4)));
+	}
+
+	_aligned_free(vectorInputBuffer);
+
 #pragma endregion
 
 	if (pOutputSamples->pSample != nullptr)

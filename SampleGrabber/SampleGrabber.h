@@ -14,7 +14,8 @@
 #include <wrl\module.h>
 #include <windows.media.h>
 #include <wrl\wrappers\corewrappers.h>
-
+#include "DirectXMath.h"
+#include <malloc.h>
 
 class CSampleGrabber
 	: public Microsoft::WRL::RuntimeClass<
@@ -166,3 +167,4 @@ private:
 
 
 };
+

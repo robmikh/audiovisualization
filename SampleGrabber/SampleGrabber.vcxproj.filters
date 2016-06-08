@@ -10,10 +10,14 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="SampleGrabber.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="MFHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="SampleGrabber.h" />
+    <ClInclude Include="XDSP.h" />
+    <ClInclude Include="DirectXMath.h" />
+    <ClInclude Include="MFHelpers.h" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="SampleGrabberMFT.idl" />
