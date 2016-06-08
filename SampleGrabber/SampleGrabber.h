@@ -16,6 +16,7 @@
 #include <wrl\wrappers\corewrappers.h>
 #include "DirectXMath.h"
 #include <malloc.h>
+#include "MFHelpers.h"
 
 class CSampleGrabber
 	: public Microsoft::WRL::RuntimeClass<

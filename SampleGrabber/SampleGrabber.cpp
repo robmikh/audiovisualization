@@ -358,9 +358,9 @@ HRESULT CSampleGrabber::GetOutputAvailableType(
 	}
 	else
 	{
-		//hr = ConvertAudioTypeToPCM(&m_pInputType, wav.Get());
-		//ASSERT(m_pInputType);
-
+		ASSERT(m_pInputType);
+		//hr = ConvertAudioTypeToFloat32(m_pInputType.Get(), wav.GetAddressOf());
+		//m_pInputType.CopyTo(wav.GetAddressOf());
 		m_pInputType.CopyTo(ppType);
 	}
 
@@ -475,6 +475,8 @@ HRESULT CSampleGrabber::SetOutputType(
 			{
 				return MF_E_INVALIDMEDIATYPE;
 			}
+
+
 
 			m_pOutputType.Attach(pType);
 		}
