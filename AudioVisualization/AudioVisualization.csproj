@@ -103,6 +103,7 @@
     </Compile>
     <Compile Include="BackgroundApp.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Composition\CompositionManager.cs" />
     <Compile Include="Controls\Visualizers\BaseVisualizer.cs" />
     <Compile Include="Controls\Visualizers\CompositionVisualizer.cs" />
     <Compile Include="Controls\Visualizers\Win2DVisualizer.cs" />

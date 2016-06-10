@@ -9,6 +9,8 @@ using Windows.UI.Core;
 using System.Threading;
 using Windows.Foundation;
 using Windows.UI;
+using SampleGrabberCS.Reference;
+using AudioVisualization.Services;
 
 namespace AudioVisualization.Controls.Visualizers
 {
@@ -97,6 +99,7 @@ namespace AudioVisualization.Controls.Visualizers
                 while (!canceled.IsCancellationRequested)
                 {
                     DrawSwapChain(_swapChain);
+                    _swapChain.WaitForVerticalBlank();
                 }
 
                 _swapChain.Dispose();
@@ -116,7 +119,19 @@ namespace AudioVisualization.Controls.Visualizers
 
                 var center = size / 2;
 
-                ds.FillCircle(center, radius, Colors.LightGoldenrodYellow);
+                float fillRadius = radius;
+
+                // yuck
+                lock(PassthroughEffect.GetBadLock())
+                {
+                    if (PlayerService.Current.ReferencePropertySet != null &&
+                        PlayerService.Current.ReferencePropertySet.ContainsKey("InputDataRaw"))
+                    {
+                        fillRadius *= (float)PlayerService.Current.ReferencePropertySet["InputDataRaw"];
+                    }
+                }
+
+                ds.FillCircle(center, fillRadius, Colors.LightGoldenrodYellow);
                 ds.DrawCircle(center, radius, Colors.LightGray);
             }
 

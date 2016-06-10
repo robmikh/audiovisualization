@@ -11,6 +11,9 @@ using System.Diagnostics;
 using Windows.Media;
 using AudioVisualization.Controls.Visualizers;
 using SampleGrabberCS;
+using SampleGrabberCS.Reference;
+using Windows.UI.Composition;
+using AudioVisualization.Composition;
 
 namespace AudioVisualization.Services
 {
@@ -20,15 +23,26 @@ namespace AudioVisualization.Services
 
         private PropertySet _sampleGrabberProperties;
 
+        private PropertySet _referenceProperties;
+
+        private CompositionPropertySet _compositionPropertySet;
+
         public static PlayerService Current { get { if (_current == null) { _current = new PlayerService(); } return _current; } }
 
         private MediaPlayer _mediaPlayer;
 
         public Playlist Playlist { get; }
 
+        public CompositionPropertySet CompositionPropertySet { get { return _compositionPropertySet; } }
+
+        public PropertySet ReferencePropertySet { get { return _referenceProperties; } }
+
         private PlayerService()
         {
             Playlist = new Playlist();
+
+            _compositionPropertySet = CompositionManager.Compositor.CreatePropertySet();
+            _compositionPropertySet.InsertScalar("InputData", 0);
 
             InitializeMediaPlayer();
         }
@@ -83,9 +97,15 @@ namespace AudioVisualization.Services
             {
                 _sampleGrabberProperties = new PropertySet();
 
-                player.AddAudioEffect("SG.SampleGrabberTransform", false, null);
+                _referenceProperties = new PropertySet();
+
+                _referenceProperties.Add("compositionPropertySet", _compositionPropertySet);
+
+                //player.AddAudioEffect("SG.SampleGrabberTransform", false, null);
 
                 //player.AddAudioEffect(typeof(VolumeDetectionEffect).FullName, true, _sampleGrabberProperties);
+
+                player.AddAudioEffect(typeof(PassthroughEffect).FullName, false, _referenceProperties);
             }
         }
     }
