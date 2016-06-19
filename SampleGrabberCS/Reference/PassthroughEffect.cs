@@ -27,7 +27,7 @@ namespace SampleGrabberCS.Reference
         private IPropertySet propertySet;
         private CompositionPropertySet compositionPropertySet;
 
-        public bool UseInputFrameForOutput { get { return false; } }
+        public bool UseInputFrameForOutput { get { return true; } }
         public bool TimeIndependent { get { return true; } }
         public bool IsReadyOnly { get { return true; } }
 
@@ -64,23 +64,16 @@ namespace SampleGrabberCS.Reference
         unsafe public void ProcessFrame(ProcessAudioFrameContext context)
         {
             AudioFrame inputFrame = context.InputFrame;
-            AudioFrame outputFrame = context.OutputFrame;
 
-            using (AudioBuffer inputBuffer = inputFrame.LockBuffer(AudioBufferAccessMode.Read),
-                                outputBuffer = outputFrame.LockBuffer(AudioBufferAccessMode.Write))
-            using (IMemoryBufferReference inputReference = inputBuffer.CreateReference(),
-                                            outputReference = outputBuffer.CreateReference())
+            using (AudioBuffer inputBuffer = inputFrame.LockBuffer(AudioBufferAccessMode.Read))
+            using (IMemoryBufferReference inputReference = inputBuffer.CreateReference())
             {
                 byte* inputDataInBytes;
-                byte* outputDataInBytes;
                 uint inputCapacity;
-                uint outputCapacity;
 
                 ((IMemoryBufferByteAccess)inputReference).GetBuffer(out inputDataInBytes, out inputCapacity);
-                ((IMemoryBufferByteAccess)outputReference).GetBuffer(out outputDataInBytes, out outputCapacity);
 
                 float* inputDataInFloat = (float*)inputDataInBytes;
-                float* outputDataInFloat = (float*)outputDataInBytes;
 
                 // Process audio data
                 int dataInFloatLength = (int)inputBuffer.Length / sizeof(float);
@@ -88,9 +81,8 @@ namespace SampleGrabberCS.Reference
                 for (int i = 0; i < dataInFloatLength; i++)
                 {
                     float inputData = inputDataInFloat[i];
-                    outputDataInFloat[i] = inputData;
 
-                    lock(badLock)
+                    lock (badLock)
                     {
                         if (propertySet.ContainsKey("InputDataRaw"))
                         {
@@ -101,7 +93,7 @@ namespace SampleGrabberCS.Reference
                             propertySet.Add("InputDataRaw", inputData);
                         }
                     }
-                    
+
                     if (compositionPropertySet != null)
                     {
                         compositionPropertySet.InsertScalar("InputData", inputData * 500);

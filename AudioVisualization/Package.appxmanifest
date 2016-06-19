@@ -35,12 +35,12 @@
         <ActivatableClass ActivatableClassId="SG.SampleGrabberTransform" ThreadingModel="both" />
       </InProcessServer>
     </Extension>
-    <Extension Category="windows.activatableClass.inProcessServer">
+    <!--<Extension Category="windows.activatableClass.inProcessServer">
       <InProcessServer>
         <Path>SampleGrabberCS.dll</Path>
         <ActivatableClass ActivatableClassId="SampleGrabberCS.Reference.PassthroughEffect" ThreadingModel="both" />
       </InProcessServer>
-    </Extension>
+    </Extension>-->
   </Extensions>
 
   <Capabilities>
