@@ -11,8 +11,8 @@
     <AssemblyName>AudioVisulization</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.14332.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.14332.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.14366.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.14366.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -239,6 +239,11 @@
       <Project>{1249b84b-73cf-49dd-a281-29fb23c1d1cf}</Project>
       <Name>SampleGrabber</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
+      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
